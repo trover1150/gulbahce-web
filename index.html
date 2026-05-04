@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gülbahçe Üniversite Hazırlık</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#kapak" class="nav-logo">
+                <div class="logo-btn">
+                    <p class="text-top">GÜLBAHÇE</p>
+                    <p class="text-bottom">HAZIRLIK</p>
+                    <svg class="wave-svg animate-pulse" viewBox="0 0 2400 800" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="wave-grad" y2="100%" x2="50%" y1="0%" x1="50%">
+                                <stop offset="0%" stop-opacity="1" stop-color="hsl(145, 63%, 49%)"></stop>
+                                <stop offset="100%" stop-opacity="1" stop-color="hsl(145, 63%, 25%)"></stop>
+                            </linearGradient>
+                        </defs>
+                        <g transform="matrix(1,0,0,1,0,-91)" fill="url(#wave-grad)">
+                            <path opacity="0.1" transform="matrix(1,0,0,1,0,35)" d="M 0 305 Q 227 450 600 302 Q 1010 450 1200 343 Q 1379 450 1800 320 Q 2153 450 2400 314 L 2400 800 L 0 800 Z"></path>
+                            <path opacity="0.3" transform="matrix(1,0,0,1,0,105)" d="M 0 305 Q 227 450 600 302 Q 1010 450 1200 343 Q 1379 450 1800 320 Q 2153 450 2400 314 L 2400 800 L 0 800 Z"></path>
+                            <path opacity="0.6" transform="matrix(1,0,0,1,0,175)" d="M 0 305 Q 227 450 600 302 Q 1010 450 1200 343 Q 1379 450 1800 320 Q 2153 450 2400 314 L 2400 800 L 0 800 Z"></path>
+                            <path opacity="1" transform="matrix(1,0,0,1,0,245)" d="M 0 305 Q 227 450 600 302 Q 1010 450 1200 343 Q 1379 450 1800 320 Q 2153 450 2400 314 L 2400 800 L 0 800 Z"></path>
+                        </g>
+                    </svg>
+                </div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li>
+                    <a href="#kapak" class="nav-link active" data-section="kapak">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Ana Sayfa</span>
+                            <span class="button-inner-hover">Ana Sayfa</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#biz-kimiz" class="nav-link" data-section="biz-kimiz">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Biz Kimiz</span>
+                            <span class="button-inner-hover">Biz Kimiz</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#egitim-sistemi" class="nav-link" data-section="egitim-sistemi">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Eğitim Sistemi</span>
+                            <span class="button-inner-hover">Eğitim Sistemi</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#programlar" class="nav-link" data-section="programlar">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Programlar</span>
+                            <span class="button-inner-hover">Programlar</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#basari" class="nav-link" data-section="basari">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Başarı</span>
+                            <span class="button-inner-hover">Başarı</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#galeri" class="nav-link" data-section="galeri">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Galeri</span>
+                            <span class="button-inner-hover">Galeri</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#iletisim" class="nav-link" data-section="iletisim">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">İletişim</span>
+                            <span class="button-inner-hover">İletişim</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <a href="#iletisim" class="nav-button">
+                <span class="button-bg">
+                    <span class="button-bg-layers">
+                        <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                        <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                        <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                    </span>
+                </span>
+                <span class="button-inner">
+                    <span class="button-inner-static">Kayıt Ol</span>
+                    <span class="button-inner-hover">Kayıt Ol</span>
+                </span>
+            </a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menü">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== HERO / KAPAK ========== -->
+    <section class="hero" id="kapak">
+        <!-- Background glow effects -->
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="hero-glow hero-glow-3"></div>
+
+        <!-- Decorative Elements Container -->
+        <div id="particle-container" class="decorative-elements"></div>
+
+        <!-- Oversized Typography -->
+        <h1 class="hero-title">GÜLBAHÇE</h1>
+
+        <!-- Horizontal Glassmorphism Card -->
+        <div class="hero-card glass-card">
+            <div class="card-main-content">
+                <div class="card-badge">ÜNİVERSİTE HAZIRLIK</div>
+                <h2 class="card-title">Gülbahçe Üniversite<br>Hazırlık</h2>
+                <p class="card-description">
+                    2005'ten beri süregelen tecrübeye sahip, disiplinli ve öğrenci odaklı eğitim sistemi ile üniversiteye hazırlık sürecinde güvenilir bir kurum.
+                </p>
+            </div>
+            <div class="divider"></div>
+            <div class="card-details">
+                <div class="detail-item">
+                    <span class="detail-label">KURS</span>
+                    <span class="detail-value">Gülbahçe Üniversite Hazırlık</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">YIL</span>
+                    <span class="detail-value">2005</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">KONUM</span>
+                    <span class="detail-value">Çatalca / İstanbul</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Countdown Widget -->
+        <div class="countdown-widget">
+            <span class="countdown-label">⏳ SON KAYIT ZAMANI</span>
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <div class="countdown-circle">
+                        <svg width="64" height="64">
+                            <circle cx="32" cy="32" r="28"></circle>
+                            <circle cx="32" cy="32" r="28" id="days-ring"></circle>
+                        </svg>
+                        <div class="countdown-number" id="days">00</div>
+                    </div>
+                    <span class="countdown-text">GÜN</span>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-circle">
+                        <svg width="64" height="64">
+                            <circle cx="32" cy="32" r="28"></circle>
+                            <circle cx="32" cy="32" r="28" id="hours-ring"></circle>
+                        </svg>
+                        <div class="countdown-number" id="hours">00</div>
+                    </div>
+                    <span class="countdown-text">SAAT</span>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-circle">
+                        <svg width="64" height="64">
+                            <circle cx="32" cy="32" r="28"></circle>
+                            <circle cx="32" cy="32" r="28" id="minutes-ring"></circle>
+                        </svg>
+                        <div class="countdown-number" id="minutes">00</div>
+                    </div>
+                    <span class="countdown-text">DAKİKA</span>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-circle">
+                        <svg width="64" height="64">
+                            <circle cx="32" cy="32" r="28"></circle>
+                            <circle cx="32" cy="32" r="28" id="seconds-ring"></circle>
+                        </svg>
+                        <div class="countdown-number" id="seconds">00</div>
+                    </div>
+                    <span class="countdown-text">SANİYE</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BİZ KİMİZ ========== -->
+    <section class="section" id="biz-kimiz">
+        <div class="section-container reveal">
+            <span class="section-label">Hakkımızda</span>
+            <h2 class="section-title">Biz Kimiz</h2>
+            <div class="section-content split-layout">
+                <div class="text-content">
+                    <p class="section-text">
+                        Gülbahçe Üniversite Hazırlık Kursu, 2005 yılından bu yana İstanbul Çatalca'da 
+                        öğrencilerin üniversite hayallerini gerçeğe dönüştürmek için çalışmaktadır.
+                    </p>
+                    <ul class="section-list">
+                        <li style="--i:1">20 yılı aşkın eğitim tecrübesi</li>
+                        <li style="--i:2">Uzman ve deneyimli kadro</li>
+                        <li style="--i:3">Öğrenci odaklı, disiplinli eğitim anlayışı</li>
+                        <li style="--i:4">Yüksek başarı oranı ve güvenilirlik</li>
+                        <li style="--i:5">Aile-kurum iş birliği ile sürekli iletişim</li>
+                    </ul>
+                </div>
+                <div class="image-content">
+                    <div class="about-image-wrapper glass-card">
+                        <img src="https://images.unsplash.com/photo-1523240693567-510e807b9400?auto=format&fit=crop&q=80&w=1000" alt="Hakkımızda">
+                        <div class="image-badge">Sınav Hazırlık Uzmanı</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== NEDEN BİZ ========== -->
+    <section class="section section-alt" id="neden-biz">
+        <div class="section-container reveal">
+            <span class="section-label">Farkımız</span>
+            <h2 class="section-title">Neden Biz</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <span class="feature-number">01</span>
+                            <h3>Disiplinli Sistem</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Kurallı ve düzenli bir eğitim ortamı ile öğrencilerin potansiyelini maksimuma çıkarıyoruz.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <span class="feature-number">02</span>
+                            <h3>Birebir Takip</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Her öğrencinin gelişimini bireysel olarak takip eden rehberlik sistemi.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <span class="feature-number">03</span>
+                            <h3>Kanıtlanmış Başarı</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Yıllardır süregelen yüksek yerleştirme oranları ve mezun memnuniyeti.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <span class="feature-number">04</span>
+                            <h3>Bütünsel Eğitim</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Akademik başarının yanı sıra manevi ve sosyal gelişimi de destekleyen program.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EĞİTİM SİSTEMİ ========== -->
+    <section class="section" id="egitim-sistemi">
+        <div class="section-container reveal">
+            <span class="section-label">Sistem</span>
+            <h2 class="section-title">Eğitim Sistemi</h2>
+            <div class="section-content">
+                <p class="section-text">
+                    Öğrencilerimizin akademik başarılarını en üst seviyeye taşımak için 
+                    bilimsel ve sistematik bir eğitim modeli uyguluyoruz.
+                </p>
+                <ul class="section-list">
+                    <li>Konu anlatımı + soru çözümü entegre ders planı</li>
+                    <li>Haftalık deneme sınavları ve analiz raporları</li>
+                    <li>Eksik tespit sistemi ile bireysel çalışma planları</li>
+                    <li>Düzenli tekrar programları ve soru bankası desteği</li>
+                    <li>Motivasyon ve verimlilik seminerleri</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ALAN DESTEK PROGRAMI ========== -->
+    <section class="section section-alt" id="alan-destek">
+        <div class="section-container reveal">
+            <span class="section-label">Destek</span>
+            <h2 class="section-title">Alan Destek Programı</h2>
+            <div class="section-content">
+                <p class="section-text">
+                    Sayısal, eşit ağırlık ve sözel alanlardaki öğrencilere özel destek programları.
+                </p>
+                <ul class="section-list">
+                    <li>Alana özel müfredat ve ders programı</li>
+                    <li>Zayıf alan tespiti ve güçlendirme dersleri</li>
+                    <li>Birebir koçluk ve yönlendirme</li>
+                    <li>Küçük grup çalışmaları</li>
+                    <li>Alan bazlı deneme sınavları</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FİZİKİ ORTAM ========== -->
+    <section class="section" id="fiziki-ortam">
+        <div class="section-container reveal">
+            <span class="section-label">Ortam</span>
+            <h2 class="section-title">Fiziki Ortam</h2>
+            <div class="section-content">
+                <p class="section-text">
+                    Modern ve konforlu eğitim alanları ile öğrencilere en verimli çalışma ortamını sunuyoruz.
+                </p>
+                <ul class="section-list">
+                    <li>Klimali ve ferah derslikler</li>
+                    <li>Bireysel etüt odaları</li>
+                    <li>Kütüphane ve sessiz çalışma alanları</li>
+                    <li>Dinlenme ve sosyal alanlar</li>
+                    <li>Güvenli ve hijyenik ortam</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TAKİP SİSTEMİ ========== -->
+    <section class="section section-alt" id="takip-sistemi">
+        <div class="section-container reveal">
+            <span class="section-label">Takip</span>
+            <h2 class="section-title">Takip Sistemi</h2>
+            <div class="section-content">
+                <p class="section-text">
+                    Her öğrencinin gelişimini adım adım izleyen kapsamlı takip mekanizması.
+                </p>
+                <ul class="section-list">
+                    <li>Günlük yoklama ve katılım takibi</li>
+                    <li>Haftalık performans raporları</li>
+                    <li>Aylık veli bilgilendirme toplantıları</li>
+                    <li>Bireysel gelişim dosyası</li>
+                    <li>Anlık veli bilgilendirme sistemi</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BAŞARI ========== -->
+    <section class="section" id="basari">
+        <div class="section-container reveal">
+            <span class="section-label">Sonuçlar</span>
+            <h2 class="section-title">Başarı</h2>
+            <div class="stats-grid">
+                <!-- Stat 1 -->
+                <div class="stat-card">
+                    <div class="loader-wrapper">
+                        <div class="loader"></div>
+                        <div class="stat-number-wrapper">
+                            <span class="loader-letter" style="animation-delay: 0.1s">%</span>
+                            <span class="loader-letter" style="animation-delay: 0.2s">9</span>
+                            <span class="loader-letter" style="animation-delay: 0.3s">2</span>
+                        </div>
+                    </div>
+                    <span class="stat-label">Yerleştirme Oranı</span>
+                </div>
+                <!-- Stat 2 -->
+                <div class="stat-card">
+                    <div class="loader-wrapper">
+                        <div class="loader"></div>
+                        <div class="stat-number-wrapper">
+                            <span class="loader-letter" style="animation-delay: 0.1s">5</span>
+                            <span class="loader-letter" style="animation-delay: 0.2s">0</span>
+                            <span class="loader-letter" style="animation-delay: 0.3s">0</span>
+                            <span class="loader-letter" style="animation-delay: 0.4s">+</span>
+                        </div>
+                    </div>
+                    <span class="stat-label">Mezun Öğrenci</span>
+                </div>
+                <!-- Stat 3 -->
+                <div class="stat-card">
+                    <div class="loader-wrapper">
+                        <div class="loader"></div>
+                        <div class="stat-number-wrapper">
+                            <span class="loader-letter" style="animation-delay: 0.1s">2</span>
+                            <span class="loader-letter" style="animation-delay: 0.2s">0</span>
+                            <span class="loader-letter" style="animation-delay: 0.3s">+</span>
+                        </div>
+                    </div>
+                    <span class="stat-label">Yıllık Deneyim</span>
+                </div>
+                <!-- Stat 4 -->
+                <div class="stat-card">
+                    <div class="loader-wrapper">
+                        <div class="loader"></div>
+                        <div class="stat-number-wrapper">
+                            <span class="loader-letter" style="animation-delay: 0.1s">5</span>
+                            <span class="loader-letter" style="animation-delay: 0.2s">0</span>
+                            <span class="loader-letter" style="animation-delay: 0.3s">+</span>
+                        </div>
+                    </div>
+                    <span class="stat-label">Tıp Fakültesi</span>
+                </div>
+            </div>
+            <ul class="section-list" style="margin-top: 2rem;">
+                <li>Her yıl artan başarı grafiği</li>
+                <li>İlk 1000'e giren öğrenciler</li>
+                <li>Tıp, hukuk, mühendislik yerleştirmeleri</li>
+                <li>Burs kazanan öğrenci sayısı</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ========== MANEVİ PROGRAM ========== -->
+    <section class="section section-alt" id="manevi-program">
+        <div class="section-container reveal">
+            <span class="section-label">Değerler</span>
+            <h2 class="section-title">Manevi Program</h2>
+            <div class="section-content">
+                <p class="section-text">
+                    Akademik gelişimin yanında manevi olgunlaşmayı da destekleyen bütüncül bir yaklaşım.
+                </p>
+                <ul class="section-list">
+                    <li>Sabah ve akşam manevi programları</li>
+                    <li>Haftalık sohbet ve değerler eğitimi</li>
+                    <li>Ahlak ve karakter gelişimi seminerleri</li>
+                    <li>Şükür ve motivasyon çalışmaları</li>
+                    <li>Manevi rehberlik desteği</li>
+                    <li>Kur'an-ı Kerim dersleri</li>
+                    <li>Temel dini bilgiler eğitimi</li>
+                    <li>Siyer ve İslam tarihi</li>
+                    <li>Hadis ve ahlak dersleri</li>
+                    <li>Dua ve ibadet eğitimi</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== SOSYAL PROGRAMLAR ========== -->
+    <section class="section section-alt" id="sosyal-programlar">
+        <div class="section-container reveal">
+            <span class="section-label">Sosyal</span>
+            <h2 class="section-title">Sosyal Programlar</h2>
+            <div class="section-content">
+                <p class="section-text">
+                    Öğrencilerin sosyal gelişimini destekleyen etkinlik ve organizasyonlar.
+                </p>
+                <ul class="section-list">
+                    <li>Haftalık spor aktiviteleri</li>
+                    <li>Doğa yürüyüşleri ve kamplar</li>
+                    <li>Kültürel geziler ve müze ziyaretleri</li>
+                    <li>Takım çalışması etkinlikleri</li>
+                    <li>Sosyal sorumluluk projeleri</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GÜNLÜK PROGRAM ========== -->
+    <section class="section" id="gunluk-program">
+        <div class="section-container reveal">
+            <span class="section-label">Program</span>
+            <h2 class="section-title">Günlük Program</h2>
+            <div class="schedule-grid">
+                <div class="schedule-item glass-card">
+                    <span class="schedule-time">06:00</span>
+                    <span class="schedule-activity">Sabah Programı</span>
+                </div>
+                <div class="schedule-item glass-card">
+                    <span class="schedule-time">07:30</span>
+                    <span class="schedule-activity">Kahvaltı</span>
+                </div>
+                <div class="schedule-item glass-card">
+                    <span class="schedule-time">08:30</span>
+                    <span class="schedule-activity">Ders Bloğu I</span>
+                </div>
+                <div class="schedule-item glass-card">
+                    <span class="schedule-time">12:30</span>
+                    <span class="schedule-activity">Öğle Arası</span>
+                </div>
+                <div class="schedule-item glass-card">
+                    <span class="schedule-time">13:30</span>
+                    <span class="schedule-activity">Ders Bloğu II</span>
+                </div>
+                <div class="schedule-item glass-card">
+                    <span class="schedule-time">16:30</span>
+                    <span class="schedule-activity">Etüt & Soru Çözümü</span>
+                </div>
+                <div class="schedule-item glass-card">
+                    <span class="schedule-time">19:00</span>
+                    <span class="schedule-activity">Akşam Programı</span>
+                </div>
+                <div class="schedule-item glass-card">
+                    <span class="schedule-time">21:00</span>
+                    <span class="schedule-activity">Bireysel Çalışma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROGRAMLAR (Ekstra Kartlar) ========== -->
+    <section class="section section-alt" id="programlar">
+        <div class="section-container reveal">
+            <span class="section-label">Ekstra</span>
+            <h2 class="section-title">Programlar</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-card-inner">
+                        <div class="program-icon">🎓</div>
+                        <h3>Mezun Seminerleri</h3>
+                        <p>Üniversiteyi kazanan mezunlarımızın deneyim paylaşımları ve motivasyon konuşmaları.</p>
+                        <ul>
+                            <li>Aylık mezun buluşmaları</li>
+                            <li>Başarı hikayeleri</li>
+                            <li>Üniversite hayatı rehberliği</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-card-inner">
+                        <div class="program-icon">📚</div>
+                        <h3>Ekstra Dersler</h3>
+                        <p>Müfredatın ötesinde, öğrencilerin ihtiyaçlarına göre şekillenen ek ders programları.</p>
+                        <ul>
+                            <li>Paragraf ve problem atölyeleri</li>
+                            <li>Hızlı okuma teknikleri</li>
+                            <li>Sınav stratejisi dersleri</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-card-inner">
+                        <div class="program-icon">📋</div>
+                        <h3>Dahili Program</h3>
+                        <p>Yatılı öğrencilere özel, günün her saatini verimli kullanan kapsamlı program.</p>
+                        <ul>
+                            <li>7/24 danışman desteği</li>
+                            <li>Gece etüt programı</li>
+                            <li>Hafta sonu takviye dersleri</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-card-inner">
+                        <div class="program-icon">🗓️</div>
+                        <h3>Örnek Ders Programı</h3>
+                        <p>Haftalık ders dağılımı ve çalışma planı örneği.</p>
+                        <ul>
+                            <li>Pazartesi-Cuma: 8 ders saati</li>
+                            <li>Cumartesi: Deneme sınavı</li>
+                            <li>Pazar: Tekrar ve dinlenme</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GALERİ ========== -->
+    <section class="section section-alt" id="galeri">
+        <div class="section-container reveal">
+            <span class="section-label">Kampüsümüzden Kareler</span>
+            <h2 class="section-title">Galeri</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item glass-card">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08759dfc3ef?auto=format&fit=crop&q=80&w=800" alt="Kampüs">
+                    <div class="gallery-overlay">
+                        <span>Dış Cephe</span>
+                    </div>
+                </div>
+                <div class="gallery-item glass-card">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=800" alt="Sınıf">
+                    <div class="gallery-overlay">
+                        <span>Modern Sınıflar</span>
+                    </div>
+                </div>
+                <div class="gallery-item glass-card">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb28f74b671?auto=format&fit=crop&q=80&w=800" alt="Kütüphane">
+                    <div class="gallery-overlay">
+                        <span>Etüt Alanları</span>
+                    </div>
+                </div>
+                <div class="gallery-item glass-card">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800" alt="Sosyal">
+                    <div class="gallery-overlay">
+                        <span>Sosyal Alanlar</span>
+                    </div>
+                </div>
+                <div class="gallery-item glass-card">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" alt="Teknoloji">
+                    <div class="gallery-overlay">
+                        <span>Dijital Eğitim</span>
+                    </div>
+                </div>
+                <div class="gallery-item glass-card">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800" alt="Grup">
+                    <div class="gallery-overlay">
+                        <span>Başarı Odaklılık</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== İLETİŞİM ========== -->
+    <section class="section closing-section" id="iletisim">
+        <div class="section-container reveal">
+            <span class="section-label">İletişim</span>
+            <div class="closing-content">
+                <p class="closing-text">
+                    Gülbahçe ailesi olarak, her öğrencimizin potansiyelini keşfetmesi ve 
+                    hayallerindeki üniversiteye ulaşması için buradayız.
+                </p>
+                <div class="closing-cta">
+                    <a href="#" class="btn-primary">Kayıt Ol →</a>
+                    <a href="#" class="btn-secondary">Bilgi Al</a>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-item glass-card">
+                        <span class="contact-label">Adres</span>
+                        <span class="contact-value">Çatalca, İstanbul</span>
+                    </div>
+                    <div class="contact-item glass-card">
+                        <span class="contact-label">Telefon</span>
+                        <span class="contact-value">+90 (212) 000 00 00</span>
+                    </div>
+                    <div class="contact-item glass-card">
+                        <span class="contact-label">E-posta</span>
+                        <span class="contact-value">info@gulbahce.edu.tr</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <span class="footer-logo">GÜLBAHÇE</span>
+            <p class="footer-text">© 2026 Gülbahçe Üniversite Hazırlık. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
