@@ -112,7 +112,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#galeri" class="nav-link" data-section="galeri">
+                    <a href="galeri.html" class="nav-link" data-section="galeri">
                         <span class="button-bg">
                             <span class="button-bg-layers">
                                 <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
@@ -271,7 +271,7 @@
                 </div>
                 <div class="image-content">
                     <div class="about-image-wrapper glass-card">
-                        <img src="https://images.unsplash.com/photo-1523240693567-510e807b9400?auto=format&fit=crop&q=80&w=1000" alt="Hakkımızda">
+                        <img src="images/hakkimizda.jpg" alt="Gülbahçe Binası">
                         <div class="image-badge">Sınav Hazırlık Uzmanı</div>
                     </div>
                 </div>
@@ -338,18 +338,41 @@
         <div class="section-container reveal">
             <span class="section-label">Sistem</span>
             <h2 class="section-title">Eğitim Sistemi</h2>
-            <div class="section-content">
-                <p class="section-text">
-                    Öğrencilerimizin akademik başarılarını en üst seviyeye taşımak için 
-                    bilimsel ve sistematik bir eğitim modeli uyguluyoruz.
-                </p>
-                <ul class="section-list">
-                    <li>Konu anlatımı + soru çözümü entegre ders planı</li>
-                    <li>Haftalık deneme sınavları ve analiz raporları</li>
-                    <li>Eksik tespit sistemi ile bireysel çalışma planları</li>
-                    <li>Düzenli tekrar programları ve soru bankası desteği</li>
-                    <li>Motivasyon ve verimlilik seminerleri</li>
-                </ul>
+            <div class="section-content split-layout">
+                <div class="text-content">
+                    <p class="section-text">
+                        Öğrencilerimizin akademik başarılarını en üst seviyeye taşımak için 
+                        bilimsel ve sistematik bir eğitim modeli uyguluyoruz.
+                    </p>
+                    <ul class="section-list">
+                        <li>Konu anlatımı + soru çözümü entegre ders planı</li>
+                        <li>Haftalık deneme sınavları ve analiz raporları</li>
+                        <li>Eksik tespit sistemi ile bireysel çalışma planları</li>
+                        <li>Düzenli tekrar programları ve soru bankası desteği</li>
+                        <li>Motivasyon ve verimlilik seminerleri</li>
+                    </ul>
+                </div>
+                <div class="image-content">
+                    <div class="about-image-wrapper glass-card image-slider">
+                        <div class="slider-container">
+                            <div class="slider-wrapper">
+                                <div class="slide active">
+                                    <img src="images/etüt-2-.jpg" alt="Etüt 1">
+                                </div>
+                                <div class="slide">
+                                    <img src="images/etut-foto.jpg" alt="Etüt 2">
+                                </div>
+                            </div>
+                            <button class="slider-btn slider-prev" onclick="changeSlide(-1)">❮</button>
+                            <button class="slider-btn slider-next" onclick="changeSlide(1)">❯</button>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="currentSlide(0)"></span>
+                                <span class="dot" onclick="currentSlide(1)"></span>
+                            </div>
+                        </div>
+                        <div class="image-badge" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">ETÜT</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -359,17 +382,79 @@
         <div class="section-container reveal">
             <span class="section-label">Destek</span>
             <h2 class="section-title">Alan Destek Programı</h2>
-            <div class="section-content">
-                <p class="section-text">
-                    Sayısal, eşit ağırlık ve sözel alanlardaki öğrencilere özel destek programları.
-                </p>
-                <ul class="section-list">
-                    <li>Alana özel müfredat ve ders programı</li>
-                    <li>Zayıf alan tespiti ve güçlendirme dersleri</li>
-                    <li>Birebir koçluk ve yönlendirme</li>
-                    <li>Küçük grup çalışmaları</li>
-                    <li>Alan bazlı deneme sınavları</li>
-                </ul>
+            <div class="section-content split-layout">
+                <!-- Sol taraf - Deneme Slider -->
+                <div class="image-content" style="order: 1;">
+                    <div class="about-image-wrapper glass-card image-slider" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px);">
+                        <div class="slider-container">
+                            <div class="slider-wrapper">
+                                <div class="slide active">
+                                    <img src="images/deneme fotod,rafı.jpg" alt="Deneme 1">
+                                </div>
+                                <div class="slide">
+                                    <img src="images/deneme fotod,rafı.jpg" alt="Deneme 2">
+                                </div>
+                            </div>
+                            <div class="slider-dots">
+                                <span class="dot active" onclick="currentSlide(0)"></span>
+                                <span class="dot" onclick="currentSlide(1)"></span>
+                            </div>
+                        </div>
+                        <div class="image-badge" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">DENE</div>
+                    </div>
+                </div>
+                
+                <!-- Sağ taraf - Yayın listesi -->
+                <div class="text-content" style="order: 2;">
+                    <p class="section-text">
+                        Sayısal, eşit ağırlık ve sözel alanlardaki öğrencilere özel destek programları. 
+                        En güncel ve kapsamlı kaynaklarla hazırlanıyoruz.
+                    </p>
+                    
+                    <h3 style="color: #2ecc71; font-size: 1.1rem; margin: 1.5rem 0 1rem; font-weight: 700;">Kullandığımız Yayınlar:</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">3D</span>
+                        </div>
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">3-4-5</span>
+                        </div>
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">Töder</span>
+                        </div>
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">Özdebir</span>
+                        </div>
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">Bilgi Sarmalı</span>
+                        </div>
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">Hız ve Renk</span>
+                        </div>
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">LİMİT</span>
+                        </div>
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">KAREKÖK</span>
+                        </div>
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">Ens Yayınları</span>
+                        </div>
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">Workwin</span>
+                        </div>
+                        <div style="background: rgba(46,204,113,0.1); padding: 0.6rem 1rem; border-radius: 8px; border-left: 3px solid #2ecc71;">
+                            <span style="color: white; font-weight: 600; font-size: 0.9rem;">Apotemi</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="section-list" style="margin-top: 1.5rem;">
+                        <li>Alana özel müfredat ve ders programı</li>
+                        <li>Zayıf alan tespiti ve güçlendirme dersleri</li>
+                        <li>Birebir koçluk ve yönlendirme</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -399,17 +484,89 @@
         <div class="section-container reveal">
             <span class="section-label">Takip</span>
             <h2 class="section-title">Takip Sistemi</h2>
-            <div class="section-content">
-                <p class="section-text">
-                    Her öğrencinin gelişimini adım adım izleyen kapsamlı takip mekanizması.
-                </p>
-                <ul class="section-list">
-                    <li>Günlük yoklama ve katılım takibi</li>
-                    <li>Haftalık performans raporları</li>
-                    <li>Aylık veli bilgilendirme toplantıları</li>
-                    <li>Bireysel gelişim dosyası</li>
-                    <li>Anlık veli bilgilendirme sistemi</li>
-                </ul>
+            <div class="section-content split-layout">
+                <!-- Sol taraf - Metinler -->
+                <div class="text-content" style="order: 2;">
+                    <p class="section-text">
+                        Her öğrencinin gelişimini adım adım izleyen kapsamlı takip mekanizması.
+                    </p>
+                    <ul class="section-list">
+                        <li>Günlük yoklama ve katılım takibi</li>
+                        <li>Haftalık performans raporları</li>
+                        <li>Aylık veli bilgilendirme toplantıları</li>
+                        <li>Bireysel gelişim dosyası</li>
+                        <li>Anlık veli bilgilendirme sistemi</li>
+                    </ul>
+                </div>
+                
+                <!-- Sağ taraf - Etüt Devam Çizelgesi -->
+                <div class="image-content" style="order: 1; padding-left: -10rem;">
+                    <div class="section-container reveal active">
+                        <h3 style="text-align: center; color: #2ecc71; margin-bottom: 1rem; font-size: 1.2rem;">Etüt Devam Çizelgesi</h3>
+                        <div class="animated-table-card">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background: linear-gradient(135deg, #2ecc71, #27ae60); color: white;">
+                                        <th style="padding: 0.8rem; text-align: left; font-weight: 600; font-size: 0.9rem;">Ad Soyad</th>
+                                        <th style="padding: 0.8rem; text-align: center; font-weight: 600; font-size: 0.9rem;">Pzt</th>
+                                        <th style="padding: 0.8rem; text-align: center; font-weight: 600; font-size: 0.9rem;">Sal</th>
+                                        <th style="padding: 0.8rem; text-align: center; font-weight: 600; font-size: 0.9rem;">Çar</th>
+                                        <th style="padding: 0.8rem; text-align: center; font-weight: 600; font-size: 0.9rem;">Per</th>
+                                        <th style="padding: 0.8rem; text-align: center; font-weight: 600; font-size: 0.9rem;">Cum</th>
+                                        <th style="padding: 0.8rem; text-align: center; font-weight: 600; font-size: 0.9rem;">Geç Kalma</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700; font-size: 0.85rem;">Ahmet Faruk Yılmaz</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600; text-align: center; font-size: 0.85rem;">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700; font-size: 0.85rem;">Ali Osman Taşkın</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600; text-align: center; font-size: 0.85rem;">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700; font-size: 0.85rem;">Arif Emre Çelik</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600; text-align: center; font-size: 0.85rem;">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700; font-size: 0.85rem;">Bedirhan Savaşal</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600; text-align: center; font-size: 0.85rem;">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700; font-size: 0.85rem;">Ensar Olcay</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); text-align: center; font-size: 0.85rem;">-</td>
+                                        <td style="padding: 0.6rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600; text-align: center; font-size: 0.85rem;">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -476,8 +633,89 @@
                 <li>Tıp, hukuk, mühendislik yerleştirmeleri</li>
                 <li>Burs kazanan öğrenci sayısı</li>
             </ul>
+            
+        <div class="section-container reveal">
+            <h3 style="text-align: center; color: #2ecc71; margin-bottom: 2rem; font-size: 1.5rem;">Öğrenci Gelişim Tablosu</h3>
+            <div class="animated-table-card">
+                <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: linear-gradient(135deg, #2ecc71, #27ae60); color: white;">
+                                    <th style="padding: 1rem; text-align: left; font-weight: 600;">Öğrenci Adı</th>
+                                    <th style="padding: 1rem; text-align: left; font-weight: 600;">Önceki Puan</th>
+                                    <th style="padding: 1rem; text-align: left; font-weight: 600;">Sonraki Puan</th>
+                                    <th style="padding: 1rem; text-align: left; font-weight: 600;">Artış</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">Sabır Taş</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600;">304.000</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">2.208</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #f39c12; font-weight: 600;">+1.904</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">Harun Mutlu</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600;">38.818</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">6.126</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #f39c12; font-weight: 600;">+1.308</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">Serhat Yavruturk</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600;">124.070</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">8.781</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #f39c12; font-weight: 600;">+1.289</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">Yunus Yaşar</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600;">119.924</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">11.101</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #f39c12; font-weight: 600;">+1.177</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">Sait Ahmet Karataş</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600;">159.338</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">18.697</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #f39c12; font-weight: 600;">+1.359</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">Çetin Dumlu</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600;">111.172</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">24.208</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #f39c12; font-weight: 600;">+1.036</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">Recep Olcay</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600;">88.634</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">24.564</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #f39c12; font-weight: 600;">+1.030</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">Ahmet Ali Yavuz</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600;">159.848</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">27.920</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #f39c12; font-weight: 600;">+1.072</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">Ahmet Kocaizmiri</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600;">177.142</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">32.757</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #f39c12; font-weight: 600;">+1.385</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">Sadık Taş</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #e74c3c; font-weight: 600;">283.022</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #2ecc71; font-weight: 700;">34.037</td>
+                                    <td style="padding: 1rem; border-bottom: 1px solid rgba(46, 204, 113, 0.2); color: #f39c12; font-weight: 600;">+1.015</td>
+                                </tr>
+                            </tbody>
+                </table>
+            </div>
+        </div>
         </div>
     </section>
+
+    <!-- ========== ÖĞRENCİ GELİŞİM TABLOSU ========== -->
+  
 
     <!-- ========== MANEVİ PROGRAM ========== -->
     <section class="section section-alt" id="manevi-program">
@@ -508,19 +746,33 @@
     <!-- ========== SOSYAL PROGRAMLAR ========== -->
     <section class="section section-alt" id="sosyal-programlar">
         <div class="section-container reveal">
-            <span class="section-label">Sosyal</span>
-            <h2 class="section-title">Sosyal Programlar</h2>
             <div class="section-content">
-                <p class="section-text">
-                    Öğrencilerin sosyal gelişimini destekleyen etkinlik ve organizasyonlar.
-                </p>
-                <ul class="section-list">
-                    <li>Haftalık spor aktiviteleri</li>
-                    <li>Doğa yürüyüşleri ve kamplar</li>
-                    <li>Kültürel geziler ve müze ziyaretleri</li>
-                    <li>Takım çalışması etkinlikleri</li>
-                    <li>Sosyal sorumluluk projeleri</li>
-                </ul>
+                <span class="section-label" >Sosyal</span>
+                <h2 class="section-title" >Sosyal Programlar</h2>
+                
+                <!-- Metin ve Fotoğraf Container -->
+                <div class="sosyal-content-wrapper">
+                    <div class="sosyal-text-content">
+                        <p class="section-text">
+                            Öğrencilerin sosyal gelişimini destekleyen etkinlik ve organizasyonlar.
+                        </p>
+                        <ul class="section-list">
+                            <li>Haftalık spor aktiviteleri</li>
+                            <li>Doğa yürüyüşleri ve kamplar</li>
+                            <li>Kültürel geziler ve müze ziyaretleri</li>
+                            <li>Takım çalışması etkinlikleri</li>
+                            <li>Sosyal sorumluluk projeleri</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Sağ tarafa 3D fotoğraf -->
+                    <div class="sosyal-image-content">
+                        <div class="about-image-wrapper glass-card" style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px);">
+                            <img src="images/gezi.jpg" alt="Gezi ve Etkinlikler">
+                            <div class="image-badge" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">SOSYAL</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -709,8 +961,6 @@
             <p class="footer-text">© 2026 Gülbahçe Üniversite Hazırlık. Tüm hakları saklıdır.</p>
         </div>
     </footer>
-
-    <script src="script.js"></script>
 
     <script src="script.js"></script>
 </body>

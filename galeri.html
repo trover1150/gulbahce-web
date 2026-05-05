@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - Gülbahçe Üniversite Hazırlık</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .gallery-page {
+            padding-top: 120px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0f0c 0%, #0d1a12 50%, #0a150f 100%);
+        }
+        .gallery-page-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0ffe5 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gallery-page-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Ferhatlar Galeri Stili - Kart Bazlı */
+        .activity-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .activity-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(46, 204, 113, 0.5);
+            box-shadow: 0 25px 50px rgba(46, 204, 113, 0.2), 0 0 30px rgba(46, 204, 113, 0.1);
+        }
+        
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .activity-card:hover::before {
+            opacity: 1;
+        }
+        
+        .activity-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .activity-card:hover .activity-image {
+            transform: scale(1.1);
+        }
+        
+        .activity-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .activity-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2ecc71;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .activity-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        .activity-arrow {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(46, 204, 113, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2ecc71;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+        
+        .activity-card:hover .activity-arrow {
+            background: #2ecc71;
+            color: white;
+            transform: rotate(-45deg);
+        }
+        
+        /* Full Width Image Gallery */
+        .gallery-full-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 0 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .gallery-full-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-full-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(46, 204, 113, 0.3);
+        }
+        .gallery-full-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-full-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-full-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .back-btn {
+            position: fixed;
+            top: 100px;
+            left: 30px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid rgba(46, 204, 113, 0.4);
+            border-radius: 50px;
+            color: #2ecc71;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .back-btn:hover {
+            background: rgba(46, 204, 113, 0.3);
+            transform: translateX(-5px);
+        }
+        .back-btn::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+        
+        /* ========== FERHATLAR STİLİ FOTOĞRAF SLIDER ========== */
+        .feature-showcase {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .showcase-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(46, 204, 113, 0.15);
+            border-radius: 30px;
+            padding: 2rem;
+            overflow: hidden;
+        }
+        
+        @media (max-width: 900px) {
+            .showcase-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        .showcase-slider {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .showcase-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        
+        .showcase-slide.active {
+            opacity: 1;
+        }
+        
+        .showcase-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .showcase-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .showcase-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .showcase-dot.active {
+            background: white;
+            border-color: #2ecc71;
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+        }
+        
+        .showcase-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .showcase-content {
+            padding: 1rem;
+        }
+        
+        .showcase-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #2ecc71;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+        
+        .showcase-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .showcase-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .showcase-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+        }
+        
+        .showcase-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html#kapak" class="nav-logo">
+                <div class="logo-btn">
+                    <p class="text-top">GÜLBAHÇE</p>
+                    <p class="text-bottom">HAZIRLIK</p>
+                    <svg class="wave-svg animate-pulse" viewBox="0 0 2400 800" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="wave-grad" y2="100%" x2="50%" y1="0%" x1="50%">
+                                <stop offset="0%" stop-opacity="1" stop-color="hsl(145, 63%, 49%)"></stop>
+                                <stop offset="100%" stop-opacity="1" stop-color="hsl(145, 63%, 25%)"></stop>
+                            </linearGradient>
+                        </defs>
+                        <g transform="matrix(1,0,0,1,0,-91)" fill="url(#wave-grad)">
+                            <path opacity="0.1" transform="matrix(1,0,0,1,0,35)" d="M 0 305 Q 227 450 600 302 Q 1010 450 1200 343 Q 1379 450 1800 320 Q 2153 450 2400 314 L 2400 800 L 0 800 Z"></path>
+                            <path opacity="0.3" transform="matrix(1,0,0,1,0,105)" d="M 0 305 Q 227 450 600 302 Q 1010 450 1200 343 Q 1379 450 1800 320 Q 2153 450 2400 314 L 2400 800 L 0 800 Z"></path>
+                            <path opacity="0.6" transform="matrix(1,0,0,1,0,175)" d="M 0 305 Q 227 450 600 302 Q 1010 450 1200 343 Q 1379 450 1800 320 Q 2153 450 2400 314 L 2400 800 L 0 800 Z"></path>
+                            <path opacity="1" transform="matrix(1,0,0,1,0,245)" d="M 0 305 Q 227 450 600 302 Q 1010 450 1200 343 Q 1379 450 1800 320 Q 2153 450 2400 314 L 2400 800 L 0 800 Z"></path>
+                        </g>
+                    </svg>
+                </div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li>
+                    <a href="index.html#kapak" class="nav-link">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Ana Sayfa</span>
+                            <span class="button-inner-hover">Ana Sayfa</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html#biz-kimiz" class="nav-link">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Biz Kimiz</span>
+                            <span class="button-inner-hover">Biz Kimiz</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html#egitim-sistemi" class="nav-link">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Eğitim Sistemi</span>
+                            <span class="button-inner-hover">Eğitim Sistemi</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html#programlar" class="nav-link">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Programlar</span>
+                            <span class="button-inner-hover">Programlar</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html#basari" class="nav-link">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Başarı</span>
+                            <span class="button-inner-hover">Başarı</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="galeri.html" class="nav-link active">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">Galeri</span>
+                            <span class="button-inner-hover">Galeri</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html#iletisim" class="nav-link">
+                        <span class="button-bg">
+                            <span class="button-bg-layers">
+                                <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                                <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                                <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                            </span>
+                        </span>
+                        <span class="button-inner">
+                            <span class="button-inner-static">İletişim</span>
+                            <span class="button-inner-hover">İletişim</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <a href="index.html#iletisim" class="nav-button">
+                <span class="button-bg">
+                    <span class="button-bg-layers">
+                        <span class="button-bg-layer button-bg-layer-1 -green-1"></span>
+                        <span class="button-bg-layer button-bg-layer-2 -green-2"></span>
+                        <span class="button-bg-layer button-bg-layer-3 -green-3"></span>
+                    </span>
+                </span>
+                <span class="button-inner">
+                    <span class="button-inner-static">Kayıt Ol</span>
+                    <span class="button-inner-hover">Kayıt Ol</span>
+                </span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">Ana Sayfaya Dön</a>
+
+    <!-- Gallery Content -->
+    <section class="gallery-page">
+        <h1 class="gallery-page-title">Galeri</h1>
+        <p class="gallery-page-subtitle">Gülbahçe'de eğitim ve öğrenci hayatından kareler. Sadece ders değil, geleceği inşa ediyoruz.</p>
+        
+        <!-- Feature Showcase Slider - Ferhatlar Stili -->
+        <div class="feature-showcase">
+            <div class="showcase-container">
+                <div class="showcase-slider" id="showcaseSlider">
+                    <div class="showcase-slide active">
+                        <img src="images/etut-foto.jpg" alt="Sosyal Faaliyetler">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/etüt-2-.jpg" alt="Etüt Çalışmaları">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/hakkimizda.jpg" alt="Kampüs Hayatı">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800" alt="Sosyal Alanlar">
+                    </div>
+                    
+                    <div class="showcase-dots">
+                        <span class="showcase-dot active" onclick="showShowcaseSlide(0)"></span>
+                        <span class="showcase-dot" onclick="showShowcaseSlide(1)"></span>
+                        <span class="showcase-dot" onclick="showShowcaseSlide(2)"></span>
+                        <span class="showcase-dot" onclick="showShowcaseSlide(3)"></span>
+                    </div>
+                </div>
+                
+                <div class="showcase-content">
+                    <div class="showcase-label">Eğitim ve Yaşam</div>
+                    <h2 class="showcase-title">Sosyal Faaliyetler Kulübü</h2>
+                    <p class="showcase-description">
+                        Sınav hazırlığı sadece ders çalışmak değil! Öğrencilerimizin sosyal gelişimini de önemsiyoruz. 
+                        Grup çalışmaları, sosyal aktiviteler ve sportif etkinliklerle ekip ruhunu güçlendiriyor, 
+                        öğrencilerimizin dengeli bir lise hayatı geçirmesini sağlıyoruz.
+                    </p>
+                    <a href="#gallery" class="showcase-btn">
+                        <span>Fotoğrafları Keşfet</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Showcase 2 - Akademik Programlar -->
+        <div class="feature-showcase">
+            <div class="showcase-container" style="direction: rtl;">
+                <div class="showcase-content" style="direction: ltr; padding-right: 2rem;">
+                    <div class="showcase-label">Eğitim Müdavimleri</div>
+                    <h2 class="showcase-title">Akademik Programlar</h2>
+                    <p class="showcase-description">
+                        Gülbahçe'de akademik mükemmellik için tasarlanmış programlar. Deneyimli öğretmen kadromuz ve 
+                        güncellenmiş müfredatımızla öğrencilerimizi en iyi üniversitelere hazırlıyoruz.
+                    </p>
+                    <a href="#gallery" class="showcase-btn">
+                        <span>Programları İncele</span>
+                        <span>→</span>
+                    </a>
+                </div>
+                <div class="showcase-slider" style="direction: ltr;">
+                    <div class="showcase-slide active">
+                        <img src="images/etüt-2-.jpg" alt="Akademik Program">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/etut-foto.jpg" alt="Ders">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/hakkimizda.jpg" alt="Sınıf">
+                    </div>
+                    <div class="showcase-dots">
+                        <span class="showcase-dot active" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===0)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===0)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===1)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===1)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===2)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===2)})"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Showcase 3 - Sınav Hazırlık -->
+        <div class="feature-showcase">
+            <div class="showcase-container">
+                <div class="showcase-slider">
+                    <div class="showcase-slide active">
+                        <img src="images/etut-foto.jpg" alt="Sınav Hazırlık">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/hakkimizda.jpg" alt="Deneme">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/etüt-2-.jpg" alt="Çalışma">
+                    </div>
+                    <div class="showcase-dots">
+                        <span class="showcase-dot active" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===0)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===0)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===1)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===1)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===2)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===2)})"></span>
+                    </div>
+                </div>
+                <div class="showcase-content">
+                    <div class="showcase-label">Yoğunlaştırılmış Eğitim</div>
+                    <h2 class="showcase-title">Sınav Hazırlık Programı</h2>
+                    <p class="showcase-description">
+                        TY ve AYT odaklı özel hazırlık programlarımız. Her öğrencimizin seviyesine göre 
+                        kişiselleştirilmiş çalışma planları ve düzenli takip sistemi ile hedeflerine ulaşmasını sağlıyoruz.
+                    </p>
+                    <a href="#gallery" class="showcase-btn">
+                        <span>Detaylı Bilgi</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Showcase 4 - Birebir Etüt -->
+        <div class="feature-showcase">
+            <div class="showcase-container" style="direction: rtl;">
+                <div class="showcase-content" style="direction: ltr; padding-right: 2rem;">
+                    <div class="showcase-label">Kişiselleştirilmiş Destek</div>
+                    <h2 class="showcase-title">Birebir Etüt Sistemi</h2>
+                    <p class="showcase-description">
+                        Her öğrencimize özel birebir etüt imkanı. Zayıf olduğu konularda ekstra çalışma fırsatı 
+                        ve öğretmenlerimizin bireysel ilgisiyle akademik başarıyı garantiliyoruz.
+                    </p>
+                    <a href="#gallery" class="showcase-btn">
+                        <span>Etüt Sistemini Keşfet</span>
+                        <span>→</span>
+                    </a>
+                </div>
+                <div class="showcase-slider" style="direction: ltr;">
+                    <div class="showcase-slide active">
+                        <img src="images/etüt-2-.jpg" alt="Birebir Etüt">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/etut-foto.jpg" alt="Etüt">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/hakkimizda.jpg" alt="Çalışma">
+                    </div>
+                    <div class="showcase-dots">
+                        <span class="showcase-dot active" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===0)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===0)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===1)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===1)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===2)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===2)})"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Showcase 5 - Kampüs Hayatı -->
+        <div class="feature-showcase">
+            <div class="showcase-container">
+                <div class="showcase-slider">
+                    <div class="showcase-slide active">
+                        <img src="images/hakkimizda.jpg" alt="Kampüs">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/etut-foto.jpg" alt="Aktivite">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/etüt-2-.jpg" alt="Etkinlik">
+                    </div>
+                    <div class="showcase-dots">
+                        <span class="showcase-dot active" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===0)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===0)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===1)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===1)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===2)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===2)})"></span>
+                    </div>
+                </div>
+                <div class="showcase-content">
+                    <div class="showcase-label">Konforlu Ortam</div>
+                    <h2 class="showcase-title">Kampüs Hayatı</h2>
+                    <p class="showcase-description">
+                        Modern ve ferah sınıflarımız, sosyal alanlarımız ve yeşil kampüsümüz. 
+                        Öğrencilerimizin hem akademik hem de sosyal yönden gelişimini destekleyen 
+                        ideal bir öğrenme ortamı sunuyoruz.
+                    </p>
+                    <a href="#gallery" class="showcase-btn">
+                        <span>Kampüsü Gez</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Showcase 6 - İkramlarımız -->
+        <div class="feature-showcase">
+            <div class="showcase-container" style="direction: rtl;">
+                <div class="showcase-content" style="direction: ltr; padding-right: 2rem;">
+                    <div class="showcase-label">Öğrenci Memnuniyeti</div>
+                    <h2 class="showcase-title">İkramlarımız</h2>
+                    <p class="showcase-description">
+                        Öğrencilerimize ara tatillerde ve özel günlerde hazırladığımız 
+                        lezzetli ikramlar. Pizza partilerinden mangal etkinliklerine, 
+                        Gülbahçe'de her an değerlidir.
+                    </p>
+                    <a href="#gallery" class="showcase-btn">
+                        <span>Fotoğrafları Gör</span>
+                        <span>→</span>
+                    </a>
+                </div>
+                <div class="showcase-slider" style="direction: ltr;">
+                    <div class="showcase-slide active">
+                        <img src="images/ikram.jpg" alt="İkram 1">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/ikram2.jpg" alt="İkram 2">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/ikram3.jpg" alt="İkram 3">
+                    </div>
+                    <div class="showcase-slide">
+                        <img src="images/ikram4.jpg" alt="İkram 4">
+                    </div>
+                    <div class="showcase-dots">
+                        <span class="showcase-dot active" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===0)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===0)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===1)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===1)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===2)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===2)})"></span>
+                        <span class="showcase-dot" onclick="this.parentElement.parentElement.querySelectorAll('.showcase-slide').forEach((s,i)=>{s.classList.toggle('active',i===3)});this.parentElement.querySelectorAll('.showcase-dot').forEach((d,i)=>{d.classList.toggle('active',i===3)})"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Activity Cards Section - Ferhatlar Stili -->
+        <div class="activity-section">
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <img src="images/etut-foto.jpg" alt="Deneme Sınavı" class="activity-image">
+                    <div class="activity-arrow">→</div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">Deneme Sınavları</h3>
+                        <p class="activity-description">Gerçek sınav ortamında hazırlık. Öğrencilerimiz düzenli deneme sınavlarıyla kendilerini test ediyor.</p>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="images/etüt-2-.jpg" alt="Ders Anı" class="activity-image">
+                    <div class="activity-arrow">→</div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">Etüt Çalışmaları</h3>
+                        <p class="activity-description">Bireysel ve grup çalışmalarıyla verimli öğrenme ortamı. Öğrenciler birlikte gelişiyor.</p>
+                    </div>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="images/hakkimizda.jpg" alt="Kampüs" class="activity-image">
+                    <div class="activity-arrow">→</div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">Kampüsümüz</h3>
+                        <p class="activity-description">Modern ve konforlu eğitim alanları. Her detay öğrencilerimizin başarısı için düşünüldü.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Full Gallery Grid -->
+        <h2 id="gallery" style="text-align: center; color: white; margin: 4rem 0 2rem; font-size: 2rem; font-weight: 700;">Fotoğraf Galerisi</h2>
+        
+        <div class="gallery-full-grid">
+            <div class="gallery-full-item glass-card">
+                <img src="images/etut-foto.jpg" alt="Etüt Foto">
+                <div class="gallery-full-overlay">
+                    <span>Deneme Sınavı</span>
+                </div>
+            </div>
+            <div class="gallery-full-item glass-card">
+                <img src="images/etüt-2-.jpg" alt="Etüt 2">
+                <div class="gallery-full-overlay">
+                    <span>Ders Anı</span>
+                </div>
+            </div>
+            <div class="gallery-full-item glass-card">
+                <img src="images/hakkimizda.jpg" alt="Kampüs">
+                <div class="gallery-full-overlay">
+                    <span>Kampüsümüz</span>
+                </div>
+            </div>
+            <div class="gallery-full-item glass-card">
+                <img src="images/ikram.jpg" alt="İkram 1">
+                <div class="gallery-full-overlay">
+                    <span>İkramlarımız</span>
+                </div>
+            </div>
+            <div class="gallery-full-item glass-card">
+                <img src="images/ikram2.jpg" alt="İkram 2">
+                <div class="gallery-full-overlay">
+                    <span>Pizza Partisi</span>
+                </div>
+            </div>
+            <div class="gallery-full-item glass-card">
+                <img src="images/ikram3.jpg" alt="İkram 3">
+                <div class="gallery-full-overlay">
+                    <span>Mangal Etkinliği</span>
+                </div>
+            </div>
+            <div class="gallery-full-item glass-card">
+                <img src="images/ikram4.jpg" alt="İkram 4">
+                <div class="gallery-full-overlay">
+                    <span>Özel Gün Kutlamaları</span>
+                </div>
+            </div>
+            <div class="gallery-full-item glass-card">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800" alt="Sosyal">
+                <div class="gallery-full-overlay">
+                    <span>Sosyal Alanlar</span>
+                </div>
+            </div>
+            <div class="gallery-full-item glass-card">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" alt="Teknoloji">
+                <div class="gallery-full-overlay">
+                    <span>Dijital Eğitim</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <span class="footer-logo">GÜLBAHÇE</span>
+            <p class="footer-text">© 2026 Gülbahçe Üniversite Hazırlık. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Showcase Slider Functionality
+        let currentShowcaseSlide = 0;
+        const showcaseSlides = document.querySelectorAll('.showcase-slide');
+        const showcaseDots = document.querySelectorAll('.showcase-dot');
+        
+        function showShowcaseSlide(index) {
+            // Remove active class from all slides and dots
+            showcaseSlides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (showcaseDots[i]) showcaseDots[i].classList.remove('active');
+            });
+            
+            // Add active class to current slide and dot
+            currentShowcaseSlide = index;
+            if (showcaseSlides[index]) showcaseSlides[index].classList.add('active');
+            if (showcaseDots[index]) showcaseDots[index].classList.add('active');
+        }
+        
+        // Auto-play slider
+        setInterval(() => {
+            const nextSlide = (currentShowcaseSlide + 1) % showcaseSlides.length;
+            showShowcaseSlide(nextSlide);
+        }, 5000);
+    </script>
+
+</body>
+</html>

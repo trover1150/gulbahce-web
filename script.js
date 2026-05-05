@@ -361,3 +361,48 @@ if (particleContainer) {
 
     animateParticles();
 }
+
+// ========== IMAGE SLIDER ==========
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+function changeSlide(direction) {
+    const newIndex = (currentSlideIndex + direction + slides.length) % slides.length;
+    showSlide(newIndex);
+}
+
+function currentSlide(index) {
+    showSlide(index);
+}
+
+function showSlide(index) {
+    // Remove active class from all slides and dots
+    slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (dots[i]) dots[i].classList.remove('active');
+    });
+    
+    // Add active class to current slide and dot
+    currentSlideIndex = index;
+    if (slides[index]) slides[index].classList.add('active');
+    if (dots[index]) dots[index].classList.add('active');
+}
+
+// Keyboard navigation for slider
+document.addEventListener('keydown', (e) => {
+    // Only if slider is in viewport
+    const slider = document.querySelector('.image-slider');
+    if (slider) {
+        const rect = slider.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                changeSlide(1);
+            }
+        }
+    }
+});
