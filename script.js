@@ -186,32 +186,98 @@ function animateCounters() {
     });
 }
 
-// ========== SCROLL EVENT LISTENER ==========
-// Throttle scroll events for performance
-let ticking = false;
-
-function onScroll() {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            handleNavbarScroll();
-            updateActiveNav();
-            revealOnScroll();
-            parallaxGlows();
-            animateCounters();
-            ticking = false;
-        });
-        ticking = true;
+// ========== PERFORMANCE UTILITIES ==========
+// Throttle function for scroll events
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
     }
 }
 
-window.addEventListener('scroll', onScroll);
+// Debounce function for resize events
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
 
-// ========== INITIAL CALLS ==========
-// Run on page load
-document.addEventListener('DOMContentLoaded', () => {
+// Intersection Observer for better performance
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Counter observer for animation
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+            entry.target.classList.add('animated');
+            const text = entry.target.textContent;
+            const number = parseInt(text.replace(/[^0-9]/g, ''));
+            const suffix = text.replace(/[0-9]/g, '');
+            
+            let current = 0;
+            const increment = number / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= number) {
+                    current = number;
+                    clearInterval(timer);
+                }
+                entry.target.textContent = Math.floor(current) + suffix;
+            }, 30);
+        }
+    });
+}, observerOptions);
+
+// ========== SCROLL EVENT LISTENER ==========
+// Optimized scroll handler with throttling
+const onScroll = throttle(() => {
     handleNavbarScroll();
     updateActiveNav();
-    revealOnScroll();
+}, 16); // ~60fps
+
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// ========== INITIAL CALLS ==========
+// Run on page load with optimized initialization
+document.addEventListener('DOMContentLoaded', () => {
+    // Observe reveal elements
+    document.querySelectorAll('.reveal').forEach(el => {
+        revealObserver.observe(el);
+    });
+    
+    // Observe counter elements
+    document.querySelectorAll('.stat-number').forEach(el => {
+        counterObserver.observe(el);
+    });
+    
+    // Initial calls
+    handleNavbarScroll();
+    updateActiveNav();
     
     // Add a small delay for initial animations
     setTimeout(() => {
@@ -228,24 +294,47 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ========== RESIZE HANDLER ==========
-// Close mobile menu on resize to desktop
-window.addEventListener('resize', () => {
+// Debounced resize handler for better performance
+const handleResize = debounce(() => {
     if (window.innerWidth > 768 && navMenu.classList.contains('open')) {
         toggleMobileMenu();
     }
-});
+    // Re-initialize observers for new viewport
+    updateActiveNav();
+}, 250);
+
+window.addEventListener('resize', handleResize, { passive: true });
 
 // ========== COUNTDOWN LOGIC ==========
-function updateCountdown() {
-    // Target date: June 20, 2026 (approximate YKS date)
-    const targetDate = new Date('June 20, 2026 00:00:00').getTime();
-    const now = new Date().getTime();
-    const gap = targetDate - now;
+let countdownMode = 'deadline'; // 'deadline' or 'registration'
 
-    if (gap <= 0) {
-        // If countdown finished
-        document.querySelectorAll('.countdown-number').forEach(el => el.innerText = '00');
-        return;
+function updateCountdown() {
+    const now = new Date().getTime();
+    const deadlineDate = new Date('September 30, 2026 23:59:59').getTime();
+    const registrationStartDate = new Date('September 1, 2026 00:00:00').getTime();
+    
+    let gap, targetDate, label;
+    
+    if (countdownMode === 'deadline') {
+        gap = deadlineDate - now;
+        targetDate = deadlineDate;
+        
+        if (gap <= 0) {
+            // Switch to registration countdown
+            countdownMode = 'registration';
+            updateCountdownLabel('KAYITLARIN BAŞLAMASINA');
+            return;
+        }
+    } else if (countdownMode === 'registration') {
+        gap = registrationStartDate - now;
+        targetDate = registrationStartDate;
+        
+        if (gap <= 0) {
+            // Registration started
+            updateCountdownLabel('KAYITLAR BAŞLADI!');
+            document.querySelectorAll('.countdown-number').forEach(el => el.innerText = '00');
+            return;
+        }
     }
 
     const second = 1000;
@@ -278,22 +367,30 @@ function updateCountdown() {
     if (secondsRing) secondsRing.style.strokeDashoffset = circ - (s / 60) * circ;
 }
 
+function updateCountdownLabel(text) {
+    const label = document.querySelector('.countdown-label');
+    if (label) {
+        label.textContent = text;
+    }
+}
+
 // Initial call and set interval
 if (document.getElementById('days')) {
     setInterval(updateCountdown, 1000);
     updateCountdown();
 }
 
-// ========== DYNAMIC PARTICLE SWARM ==========
+// ========== DYNAMIC PARTICLE SWARM (OPTIMIZED) ==========
 const particleContainer = document.getElementById('particle-container');
 const particles = [];
-const particleCount = 150;
+const particleCount = 100; // Reduced from 150 for better performance
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 let isMouseActive = false;
+let animationId = null;
 
 if (particleContainer) {
-    // Generate particles
+    // Generate particles with object pooling
     for (let i = 0; i < particleCount; i++) {
         const dot = document.createElement('div');
         dot.className = 'dot';
@@ -318,17 +415,26 @@ if (particleContainer) {
         });
     }
 
-    window.addEventListener('mousemove', (e) => {
+    // Throttled mouse move handler
+    const handleMouseMove = throttle((e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         isMouseActive = true;
-    });
+    }, 16); // ~60fps
 
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseleave', () => {
         isMouseActive = false;
     });
 
+    // Optimized animation with early exit for hidden tabs
     function animateParticles() {
+        // Don't animate if page is not visible
+        if (document.hidden) {
+            animationId = requestAnimationFrame(animateParticles);
+            return;
+        }
+
         particles.forEach(p => {
             let targetX = p.homeX;
             let targetY = p.homeY;
@@ -348,6 +454,7 @@ if (particleContainer) {
             p.x += (targetX - p.x) * p.ease;
             p.y += (targetY - p.y) * p.ease;
 
+            // Use transform3d for GPU acceleration
             p.el.style.transform = `translate3d(${p.x - p.homeX}px, ${p.y - p.homeY}px, 0)`;
         });
         
@@ -356,10 +463,18 @@ if (particleContainer) {
             mouseGlow.style.transform = `translate3d(${mouseX - 300}px, ${mouseY - 300}px, 0)`;
         }
 
-        requestAnimationFrame(animateParticles);
+        animationId = requestAnimationFrame(animateParticles);
     }
 
+    // Start animation
     animateParticles();
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+    });
 }
 
 // ========== IMAGE SLIDER ==========
@@ -368,7 +483,17 @@ const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
 
 function changeSlide(direction) {
-    const newIndex = (currentSlideIndex + direction + slides.length) % slides.length;
+    let newIndex = currentSlideIndex + direction;
+    
+    // Handle backward navigation (go back 2 times when reaching start)
+    if (newIndex < 0) {
+        newIndex = 0; // Go to first slide instead of looping
+    }
+    // Handle forward navigation (stop at last slide instead of looping)
+    else if (newIndex >= slides.length) {
+        newIndex = slides.length - 1; // Stay at last slide
+    }
+    
     showSlide(newIndex);
 }
 
@@ -406,3 +531,85 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+// ========== FİZİKİ ORTAM CAROUSEL ==========
+let carouselIndex = 0;
+const carouselSlides = document.querySelectorAll('.carousel-slide');
+const carouselDots = document.querySelectorAll('.carousel-dots .dot');
+
+function moveCarousel(direction) {
+    carouselIndex += direction;
+    
+    if (carouselIndex >= carouselSlides.length) {
+        carouselIndex = 0;
+    } else if (carouselIndex < 0) {
+        carouselIndex = carouselSlides.length - 1;
+    }
+    
+    updateCarousel();
+}
+
+function goToSlide(index) {
+    carouselIndex = index;
+    updateCarousel();
+}
+
+function updateCarousel() {
+    // Remove active class from all slides and dots
+    carouselSlides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (carouselDots[i]) carouselDots[i].classList.remove('active');
+    });
+    
+    // Add active class to current slide and dot
+    if (carouselSlides[carouselIndex]) carouselSlides[carouselIndex].classList.add('active');
+    if (carouselDots[carouselIndex]) carouselDots[carouselIndex].classList.add('active');
+}
+
+// Auto-play carousel
+setInterval(() => {
+    if (carouselSlides.length > 0) {
+        moveCarousel(1);
+    }
+}, 5000);
+
+// ========== SOSYAL PROGRAMLAR CAROUSEL ==========
+let sosyalCarouselIndex = 0;
+const sosyalCarouselSlides = document.querySelectorAll('#sosyalCarousel .carousel-slide');
+const sosyalCarouselDots = document.querySelectorAll('#sosyalCarousel + .carousel-nav .dot');
+
+function moveSosyalCarousel(direction) {
+    sosyalCarouselIndex += direction;
+    
+    if (sosyalCarouselIndex >= sosyalCarouselSlides.length) {
+        sosyalCarouselIndex = 0;
+    } else if (sosyalCarouselIndex < 0) {
+        sosyalCarouselIndex = sosyalCarouselSlides.length - 1;
+    }
+    
+    updateSosyalCarousel();
+}
+
+function goToSosyalSlide(index) {
+    sosyalCarouselIndex = index;
+    updateSosyalCarousel();
+}
+
+function updateSosyalCarousel() {
+    // Remove active class from all slides and dots
+    sosyalCarouselSlides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (sosyalCarouselDots[i]) sosyalCarouselDots[i].classList.remove('active');
+    });
+    
+    // Add active class to current slide and dot
+    if (sosyalCarouselSlides[sosyalCarouselIndex]) sosyalCarouselSlides[sosyalCarouselIndex].classList.add('active');
+    if (sosyalCarouselDots[sosyalCarouselIndex]) sosyalCarouselDots[sosyalCarouselIndex].classList.add('active');
+}
+
+// Auto-play sosyal carousel
+setInterval(() => {
+    if (sosyalCarouselSlides.length > 0) {
+        moveSosyalCarousel(1);
+    }
+}, 5000);
